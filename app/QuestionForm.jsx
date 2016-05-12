@@ -1,15 +1,15 @@
 var React = require('react');
 
-var MessageForm = React.createClass({
+var QuestionForm = React.createClass({
 	submit: function(evt) {
 		evt.preventDefault();
-		var newMessage = $('#msg').val();
+		var newQuestion = $('#msg').val();
 		var that = this;
-		$.post('/messages',
-			{newMessage: newMessage},
+		$.post('/Questions',
+			{newQuestion: newQuestion},
 			function(response) {
 				if (response == "success") {
-					that.props.getMessages();
+					that.props.getQuestions();
 					$('#msg').val('');
 				}
 			},
@@ -26,4 +26,4 @@ var MessageForm = React.createClass({
 	}
 });
 
-module.exports = MessageForm;
+module.exports = QuestionForm;

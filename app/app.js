@@ -1,5 +1,5 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-var MessageApp = require('./MessageApp.jsx');
+var QuestionApp = require('./QuestionApp.jsx');
 
-ReactDom.render(<MessageApp />, document.getElementById('app'));
+ReactDom.render(<QuestionApp />, document.getElementById('app'));
