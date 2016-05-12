@@ -88,11 +88,11 @@
 			res.send("error");
 			return;
 		}
-		var Question = new Question({
+		var question = new Question({
 			text: req.body.newQuestion,
 			username: req.session.username
 		});
-		Question.save(function (err) {
+		question.save(function (err) {
 			if (err) {
 				res.send(err);
 				return;
