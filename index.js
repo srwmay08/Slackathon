@@ -29,7 +29,7 @@
 		saveUninitialized: true
 	}));
 
-	var Message = mongoose.model("Message", {
+	var Question = mongoose.model("Question", {
 		text: String,
 		username: String
 	});
@@ -64,12 +64,12 @@
 		res.sendFile(__dirname + "/public/index.html");
 	});
 
-	app.get("/messages", function (req, res) {
+	app.get("/Questions", function (req, res) {
 		if (!req.session.username) {
 			res.send("[]");
 			return;
 		}
-		Message.find({}, "text username", function (err, data) {
+		Question.find({}, "text username", function (err, data) {
 			if (err) {
 				res.send("[]");
 				return;
@@ -78,21 +78,21 @@
 		});
 	});
 
-	app.post("/messages", function (req, res) {
+	app.post("/Questions", function (req, res) {
 		if (!req.session.username) {
 			res.send("error");
 			return;
 		}
 
-		if (!req.body.newMessage) {
+		if (!req.body.newQuestion) {
 			res.send("error");
 			return;
 		}
-		var message = new Message({
-			text: req.body.newMessage,
+		var Question = new Question({
+			text: req.body.newQuestion,
 			username: req.session.username
 		});
-		message.save(function (err) {
+		Question.save(function (err) {
 			if (err) {
 				res.send(err);
 				return;
@@ -117,8 +117,8 @@
 	app.post("/login", function (req, res) {
 		if (req.body.username && req.body.password) {
 			logInUser(
-				req.body.username, 
-				req.body.password, 
+				req.body.username,
+				req.body.password,
 				function(err, data) {
 					if (err) {
 						console.log("THERE WAS AN ERROR WITH YOUR USER");
@@ -149,7 +149,7 @@
 				return;
 			}
 		});
-		
+
 	}
 	//ADD NEW USER
 	app.get('/create', function (req, res) {
@@ -168,7 +168,7 @@
 		}
 	});
 
-	
+
 	app.use(express.static('public'));
 
 	app.use(function (req, res, next) {
