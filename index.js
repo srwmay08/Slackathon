@@ -9,6 +9,7 @@
 	var bodyParser = require('body-parser');
 	var cookieParser = require('cookie-parser');
 	var expressSession = require('express-session');
+	var uuid = require('uuid');
 
 	var loader = require('./loader.js');
 	var config = require('./config.js');
@@ -31,30 +32,14 @@
 
 	var Question = mongoose.model("Question", {
 		text: String,
-		username: String
+		username: String,
+		qID: String,
+		date: String
 	});
 
 
 
-	var users = [];
-	var testUser = [{
-			username: "mark",
-			password: "password"
-    },
-		{
-			username: "tyson",
-			password: "password"
-    },
-		{
-			username: "sean",
-			password: "password"
-    }
-    ];
-
-	for (var i = 0; i < testUser.length; i++) {
-		users.push(testUser[i]);
-	};
-
+	
 	app.get("/", function (req, res) {
 		if (!req.session.username) {
 			res.redirect("/login");
@@ -69,7 +54,7 @@
 			res.send("[]");
 			return;
 		}
-		Question.find({}, "text username", function (err, data) {
+		Question.find({}, "text username qID date", function (err, data) {
 			if (err) {
 				res.send("[]");
 				return;
@@ -88,11 +73,14 @@
 			res.send("error");
 			return;
 		}
-		var Question = new Question({
+		var question = new Question({
 			text: req.body.newQuestion,
-			username: req.session.username
+			username: req.session.username,
+			qID: uuid.v4(),
+			date: new Date()
+			
 		});
-		Question.save(function (err) {
+		question.save(function (err) {
 			if (err) {
 				res.send(err);
 				return;
