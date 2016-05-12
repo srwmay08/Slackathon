@@ -34,8 +34,6 @@
 		username: String
 	});
 
-
-
 	var users = [];
 	var testUser = [{
 			username: "mark",
@@ -101,12 +99,6 @@
 		});
 	});
 
-	//	function messageElement(username, message){
-	//		this.username = username;
-	//		this.message = message
-	//	}
-
-
 
 	app.get("/login", function (req, res) {
 		res.sendFile(__dirname + '/public/login.html');
@@ -144,14 +136,6 @@
 		username: String,
 		password: String
 	});
-//	
-//	function checkForUser(user, pass) {
-//		User.findOne({ username: user}, "username", function(err, data) {
-//			if (err) {
-//				createNewUser(user, pass);
-//			}
-//		}):
-//	}
 
 	function createNewUser(user, pass) {
 		var user = new User({
@@ -182,48 +166,6 @@
 			}
 		}
 	});
-
-	//				createNewUser(req.body.username, req.body.password, req.body.pwconfirm, users);
-	//				req.session.username = req.body.username;
-	//				loader.save(users.txt, users);
-	//				res.send(users);
-	//		if (username == "erty" && password == "password") {
-	//			return true;
-	//		} else if (username == "guest" && password == "guest") {
-	//			return true;
-	//		}
-
-
-
-	//	function createNewUser(username, password, pwconfirm, users) {
-	//		for (var i = 0; i < users.length; i++) {
-	//			if (users[i].username == username) {
-	//				return "ERROR";
-	//			}
-	//			if (users.indexOf(users[i].username) == -1) {
-	//				var test = new newUsers(username, password, pwconfirm);
-	//				users.push(test);
-	//				return;
-	//			}
-	//		}
-	//	}
-
-	//	function newUsers(username, password, pwconfirm) {
-	//		this.username = username;
-	//		this.password = password;
-	//		this.pwconfirm = pwconfirm;
-	//	}
-
-
-
-	//	function checkForUser(username) {
-	//		User.find({
-	//			username: username
-	//		});
-	//	}
-
-
-
 
 	app.use(express.static('public'));
 
