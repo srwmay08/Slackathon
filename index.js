@@ -34,6 +34,8 @@
 		username: String
 	});
 
+
+
 	var users = [];
 	var testUser = [{
 			username: "mark",
@@ -98,7 +100,6 @@
 			res.send("success");
 		});
 	});
-
 
 	app.get("/login", function (req, res) {
 		res.sendFile(__dirname + '/public/login.html');
@@ -167,6 +168,7 @@
 		}
 	});
 
+	
 	app.use(express.static('public'));
 
 	app.use(function (req, res, next) {
